@@ -1,0 +1,10 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: fast-storage
+provisioner: kubernetes.io/aws-ebs   # Use appropriate provisioner for your cloud
+parameters:
+  type: gp2                          # General-purpose SSD (AWS)
+  fsType: ext4
+reclaimPolicy: Delete               # Optional: what happens to the volume after PVC is deleted
+volumeBindingMode: Immediate        # Or 'WaitForFirstConsumer'
