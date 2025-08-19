@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mypod
+spec:
+  containers:
+    - name: myfrontend
+      image: nginx
+      volumeMounts:
+        - mountPath: "/var/www/html"  # Inside container
+          name: mypd                  # Links to volume below
+  volumes:
+    - name: mypd
+      persistentVolumeClaim:
+        claimName: myclaim            # Name of the PVC to use
