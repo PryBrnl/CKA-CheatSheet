@@ -1,0 +1,22 @@
+spec:
+  rules:
+    - host: myonlinestore.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: primary-service
+                port:
+                  number: 80
+    - host: www.myonlinestore.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: secondary-service
+                port:
+                  number: 80
