@@ -1,0 +1,22 @@
+# Imperative command: k create ingress critical-ingress --annotation=nginx.ingress.kubernetes.io/rewrite-target=/ --annotation=nginx.ingress.kubernetes.io/ssl-redirect="false" --rule=/pay=pay-service:8282 -n critical-space --dry-r
+un=client -o yaml
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: critical-ingress
+  namespace: critical-space
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /pay
+        pathType: Prefix
+        backend:
+          service:
+           name: pay-service
+           port:
+            number: 8282
